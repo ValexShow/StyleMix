@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 echo === StyleMix: сборка VST3 ===
-cmake -B build -G "Visual Studio 17 2022" -A x64
+cmake -B build -A x64
 if errorlevel 1 goto fail
 cmake --build build --config Release --target StyleMix_VST3
 if errorlevel 1 goto fail
