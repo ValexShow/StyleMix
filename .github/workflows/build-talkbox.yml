@@ -1,0 +1,22 @@
+name: Build TalkBox (Windows VST3)
+
+on:
+  push:
+    paths:
+      - 'TalkBox/**'
+      - '.github/workflows/build-talkbox.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Configure
+        run: cmake -S TalkBox -B build -A x64
+      - name: Build
+        run: cmake --build build --config Release --target TalkBox_VST3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TalkBox-VST3-Windows
+          path: build/TalkBox_artefacts/Release/VST3/
